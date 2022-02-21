@@ -1,7 +1,10 @@
 package com.grasshopper.app.service;
 
-import java.io.IOException;
+import java.util.Map;
 
 public interface ApplicationService {
-    void copyFile(String fileName);
+    void extractZip(String fileName);
+    void execute(String fileName);
+    Map<String, Long> getActiveProcess();
+    boolean terminate(String fileName);
 }
