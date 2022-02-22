@@ -23,7 +23,7 @@ public class FileUtils {
             inputStream = Files.newInputStream(filePath);
             ArchiveStreamFactory archiveStreamFactory = new ArchiveStreamFactory();
             ArchiveInputStream archiveInputStream = archiveStreamFactory.createArchiveInputStream(ArchiveStreamFactory.ZIP, inputStream);
-            ArchiveEntry archiveEntry = null;
+            ArchiveEntry archiveEntry;
             while((archiveEntry = archiveInputStream.getNextEntry()) != null) {
                 Path path = Paths.get(extractDirectory, archiveEntry.getName());
                 File file = path.toFile();

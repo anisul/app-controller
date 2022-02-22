@@ -1,8 +1,10 @@
 package com.grasshopper.app.service.impl;
 
+import com.grasshopper.app.client.InfoApiClient;
 import com.grasshopper.app.service.ApplicationService;
 import com.grasshopper.app.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +25,17 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Value("${application.files.destination}")
     String filesDestination;
 
+    @Autowired
+    InfoApiClient infoApiClient;
+
     @Override
     public void extractZip(String fileName) {
         log.info("copying file: " + fileName +
                 ", source: " + filesSource +
                 ", destination: " + filesDestination);
+
+        // we need to fetch file info from info api
+        //String fileName2 = infoApiClient.call();
 
         try {
             FileUtils.extractZip(filesSource + "\\" + fileName, filesDestination);
